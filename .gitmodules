@@ -148,3 +148,6 @@
 [submodule "generators/rocket-chip-inclusive-cache"]
 	path = generators/rocket-chip-inclusive-cache
 	url = https://github.com/chipsalliance/rocket-chip-inclusive-cache.git
+[submodule "generators/sha-acc"]
+	path = generators/sha-acc
+	url = https://github.com/BriMonzZY/sha-acc

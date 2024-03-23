@@ -219,10 +219,11 @@ lazy val sodor = (project in file("generators/riscv-sodor"))
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
 
-lazy val sha3 = (project in file("generators/sha3"))
+lazy val sha3 = (project in file("generators/sha-acc/sha3acc"))
   .dependsOn(rocketchip, midasTargetUtils)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)
+  .settings(libraryDependencies ++= Seq("edu.berkeley.cs" %% "chiseltest" % "0.6.2" % "test"))
 
 lazy val gemmini = (project in file("generators/gemmini"))
   .dependsOn(rocketchip)
