@@ -147,7 +147,7 @@ lazy val testchipip = (project in file("generators/testchipip"))
 
 lazy val chipyard = (project in file("generators/chipyard"))
   .dependsOn(testchipip, rocketchip, boom, hwacha, rocketchip_blocks, rocketchip_inclusive_cache, iocell,
-    sha3, // On separate line to allow for cleaner tutorial-setup patches
+    sha3, sha2, // On separate line to allow for cleaner tutorial-setup patches
     dsptools, rocket_dsp_utils,
     gemmini, icenet, tracegen, cva6, nvdla, sodor, ibex, fft_generator,
     constellation, mempress, barf, shuttle, caliptra_aes)
@@ -220,6 +220,12 @@ lazy val sodor = (project in file("generators/riscv-sodor"))
   .settings(commonSettings)
 
 lazy val sha3 = (project in file("generators/sha-acc/sha3acc"))
+  .dependsOn(rocketchip, midasTargetUtils)
+  .settings(libraryDependencies ++= rocketLibDeps.value)
+  .settings(commonSettings)
+  .settings(libraryDependencies ++= Seq("edu.berkeley.cs" %% "chiseltest" % "0.6.2" % "test"))
+
+lazy val sha2 = (project in file("generators/sha-acc/sha2acc"))
   .dependsOn(rocketchip, midasTargetUtils)
   .settings(libraryDependencies ++= rocketLibDeps.value)
   .settings(commonSettings)

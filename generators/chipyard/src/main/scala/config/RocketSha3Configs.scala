@@ -4,7 +4,7 @@ import org.chipsalliance.cde.config.{Config}
 import freechips.rocketchip.diplomacy.{AsynchronousCrossing}
 
 // --------------
-// Rocket+SHA3 Configs
+// Rocket+SHA2 Configs
 // These live in a separate file to simplify patching out for the tutorials.
 // --------------
 
@@ -17,6 +17,12 @@ class Sha3RocketConfig extends Config(
 
 class Sha3RocketPrintfConfig extends Config(
   new sha3.WithSha3Printf ++
+  new sha3.WithSha3Accel ++                                // add SHA3 rocc accelerator
+  new freechips.rocketchip.subsystem.WithNBigCores(1) ++
+  new chipyard.config.AbstractConfig)
+
+class Sha3BBRocketConfig extends Config(
+  new sha3.WithSha3BlackBox ++
   new sha3.WithSha3Accel ++                                // add SHA3 rocc accelerator
   new freechips.rocketchip.subsystem.WithNBigCores(1) ++
   new chipyard.config.AbstractConfig)
