@@ -18,3 +18,7 @@ class Sha2RocketPrintfConfig extends Config(
   new freechips.rocketchip.subsystem.WithNBigCores(1) ++
   new chipyard.config.AbstractConfig)
 
+class Sha2SmallRocketConfig extends Config(
+  new sha2.WithSha2Accel ++                                // add SHA2 rocc accelerator
+  new freechips.rocketchip.subsystem.WithNSmallCores(1) ++
+  new chipyard.config.AbstractConfig)
