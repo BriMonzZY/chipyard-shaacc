@@ -1844,14 +1844,14 @@ package:
     perl: ''
     python: ''
   hash:
-    md5: 0b2929f84fe7d3a6117439507d5d50d9
-    sha256: 1d6af07d2d19be7adc296e8b6c43bd3eb12b48d8ab8e0cec566e8f9872661813
+    md5: d628a7f32222786b70ad81e56dd4a61a
+    sha256: 1648f885c97e5189adb12a70eef72699885a4e9e882ea385c3cd904baed251ce
   manager: conda
   name: verilator
   optional: false
   platform: linux-64
-  url: https://conda.anaconda.org/conda-forge/linux-64/verilator-5.020-h7cd9344_0.conda
-  version: '5.020'
+  url: https://conda.anaconda.org/conda-forge/linux-64/verilator-5.022-h7cd9344_0.conda
+  version: '5.022'
 - category: main
   dependencies:
     python: '>=2.6'
