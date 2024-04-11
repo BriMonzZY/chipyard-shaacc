@@ -151,3 +151,6 @@
 [submodule "generators/sha-acc"]
 	path = generators/sha-acc
 	url = https://github.com/BriMonzZY/sha-acc.git
+[submodule "toolchains/riscv-tools/riscv-isa-sim-sha-extension"]
+	path = toolchains/riscv-tools/riscv-isa-sim-sha-extension
+	url = https://github.com/BriMonzZY/riscv-isa-sim-sha-extension
