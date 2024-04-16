@@ -1,10 +1,36 @@
 # Chipyard-shaacc
 
-支持shaacc的chipyard环境
+支持 SHA系列哈希算法加速协处理器 的 chipyard 环境。
 
-fork from tag : 1.11.0
+自 Chipayrd 的 1.11.0 版本创建分支。
 
+<br />
 
+[sha-acc](https://github.com/BriMonzZY/sha-acc) 仓库在 `generators/sha-acc` 路径中。
+
+<br />
+
+初始化环境：
+
+```shell
+sudo chmod +x init_env.sh
+
+./init_env.sh
+```
+
+<br />
+
+将 chipyard-shaacc 文件夹压缩打包：
+
+```shell
+sudo chmod +x backup.sh
+
+./backup.sh
+```
+
+<br />
+
+<br />
 
 # Original README of upstream Chipyard
 
