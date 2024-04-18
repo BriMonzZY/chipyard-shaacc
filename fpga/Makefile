@@ -16,6 +16,20 @@ sim_name := none
 #########################################################################################
 SUB_PROJECT ?= vcu118
 
+ifeq ($(SUB_PROJECT),vcu108)
+	SBT_PROJECT       ?= fpga_platforms
+	MODEL             ?= VCU108FPGATestHarness
+	VLOG_MODEL        ?= VCU108FPGATestHarness
+	MODEL_PACKAGE     ?= chipyard.fpga.vcu108
+	CONFIG            ?= RocketVCU108Config
+	CONFIG_PACKAGE    ?= chipyard.fpga.vcu108
+	GENERATOR_PACKAGE ?= chipyard
+	TB                ?= none # unused
+	TOP               ?= ChipTop
+	BOARD             ?= vcu108
+	FPGA_BRAND        ?= xilinx
+endif
+
 ifeq ($(SUB_PROJECT),vc707)
 	SBT_PROJECT       ?= fpga_platforms
 	MODEL             ?= VC707FPGATestHarness
