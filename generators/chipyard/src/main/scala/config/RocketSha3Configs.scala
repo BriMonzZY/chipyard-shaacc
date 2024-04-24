@@ -20,9 +20,3 @@ class Sha3RocketPrintfConfig extends Config(
   new sha3.WithSha3Accel ++                                // add SHA3 rocc accelerator
   new freechips.rocketchip.subsystem.WithNBigCores(1) ++
   new chipyard.config.AbstractConfig)
-
-class Sha3BBRocketConfig extends Config(
-  new sha3.WithSha3BlackBox ++
-  new sha3.WithSha3Accel ++                                // add SHA3 rocc accelerator
-  new freechips.rocketchip.subsystem.WithNBigCores(1) ++
-  new chipyard.config.AbstractConfig)

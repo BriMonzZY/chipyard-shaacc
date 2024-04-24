@@ -24,7 +24,7 @@ import sifive.blocks.devices.spi.{PeripherySPIKey, SPIParams}
 import sifive.blocks.devices.uart.{PeripheryUARTKey, UARTParams}
 
 import sifive.fpgashells.shell.{DesignKey}
-import sifive.fpgashells.shell.xilinx.{VCU108DDRSize, VCU108ShellPMOD}
+import sifive.fpgashells.shell.xilinx.{VCU108DDRSize, VCU108ShellPMOD, VCU108ShellPMOD2}
 
 import testchipip.serdes.{SerialTLKey}
 
@@ -35,6 +35,7 @@ class WithDefaultPeripherals extends Config((site, here, up) => {
   case PeripheryUARTKey => List(UARTParams(address = BigInt(0x64000000L)))
   case PeripherySPIKey => List(SPIParams(rAddress = BigInt(0x64001000L)))
   case VCU108ShellPMOD => "SDIO"
+  // case VCU108ShellPMOD2 => "PMODJ53_JTAG"
 })
 
 class WithSystemModifications extends Config((site, here, up) => {
@@ -114,4 +115,10 @@ class Rocket4VCU108Config extends Config(
 class Rocket32VCU108Config extends Config(
   new WithVCU108Tweaks ++
   new freechips.rocketchip.subsystem.WithNBigCores(32) ++         // 32 rocket-core
+  new chipyard.config.AbstractConfig)
+
+class Sha3RocketVCU108Config extends Config(
+  new WithVCU108Tweaks ++
+  new sha3.WithSha3Accel ++
+  new freechips.rocketchip.subsystem.WithNBigCores(1) ++
   new chipyard.config.AbstractConfig)
