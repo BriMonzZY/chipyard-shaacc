@@ -40,7 +40,8 @@ class VCU108FPGATestHarness(override implicit val p: Parameters) extends VCU108S
   def dp = designParameters
 
   val pmod_is_sdio  = p(VCU108ShellPMOD) == "SDIO"
-  val jtag_location = Some(if (pmod_is_sdio) "FMC_J2" else "PMOD_J52")
+  // val jtag_location = Some(if (pmod_is_sdio) "FMC_J2" else "PMOD_J52")
+  val jtag_location = Some("PMOD_J53")
 
   // Order matters; ddr depends on sys_clock
   val uart      = Overlay(UARTOverlayKey, new UARTVCU108ShellPlacer(this, UARTShellInput()))
@@ -79,6 +80,9 @@ class VCU108FPGATestHarness(override implicit val p: Parameters) extends VCU108S
   val dutGroup = ClockGroup()
   dutClock := dutWrangler.node := dutGroup := harnessSysPLL
 // DOC include end: ClockOverlay
+
+  /*** JTAG ***/
+  val jtagPlacedOverlay = dp(JTAGDebugOverlayKey).head.place(JTAGDebugDesignInput())
 
   /*** UART ***/
 

@@ -51,6 +51,27 @@ class WithSPISDCard extends HarnessBinder({
   }
 })
 
+
+// class WithJTAG extends HarnessBinder({
+//   case (th: VCU108FPGATestHarnessImp, port: ShellJTAGIO, chipId: Int) => {
+//     th.vcu108Outer.io_jtag_bb.bundle <> port.io
+//   }
+// })
+class WithJTAG extends HarnessBinder({
+  case (th: VCU108FPGATestHarnessImp, port: JTAGPort, chipId: Int) => {
+    val jtag_io = th.vcu108Outer.jtagPlacedOverlay.overlayOutput.jtag.getWrappedValue
+    port.io.TCK := jtag_io.TCK
+    port.io.TMS := jtag_io.TMS
+    port.io.TDI := jtag_io.TDI
+    jtag_io.TDO.data := port.io.TDO
+    jtag_io.TDO.driven := true.B
+    // ignore srst_n
+    jtag_io.srst_n := DontCare
+
+  }
+})
+
+
 /*** Experimental DDR ***/
 // class WithDDRMem extends OverrideHarnessBinder({
 //   (system: CanHaveMasterTLMemPort, th: BaseModule with HasHarnessSignalReferences, ports: Seq[HeterogeneousBag[TLBundle]]) => {

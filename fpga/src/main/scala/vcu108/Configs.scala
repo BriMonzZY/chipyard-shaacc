@@ -35,7 +35,7 @@ class WithDefaultPeripherals extends Config((site, here, up) => {
   case PeripheryUARTKey => List(UARTParams(address = BigInt(0x64000000L)))
   case PeripherySPIKey => List(SPIParams(rAddress = BigInt(0x64001000L)))
   case VCU108ShellPMOD => "SDIO"
-  // case VCU108ShellPMOD2 => "PMODJ53_JTAG"
+  case VCU108ShellPMOD2 => "PMODJ53_JTAG"
 })
 
 class WithSystemModifications extends Config((site, here, up) => {
@@ -66,18 +66,14 @@ class WithVCU108Tweaks extends Config(
   new WithUART ++
   new WithSPISDCard ++
   new WithDDRMem ++
-  // io binders
-  // new WithUARTIOPassthrough ++
-  // new WithSPIIOPassthrough ++
-  // new WithTLIOPassthrough ++
+  new WithJTAG ++
   // other configuration
   new WithDefaultPeripherals ++
   new chipyard.config.WithTLBackingMemory ++ // use TL backing memory
   new WithSystemModifications ++ // setup busses, use sdboot bootrom, setup ext. mem. size
-  new chipyard.config.WithNoDebug ++ // remove debug module
+  // new chipyard.config.WithNoDebug ++ // remove debug module
   new freechips.rocketchip.subsystem.WithoutTLMonitors ++
   new freechips.rocketchip.subsystem.WithNMemoryChannels(1)
-  // new WithFPGAFrequency(100) // default 100MHz freq
 )
 
 class RocketVCU108Config extends Config(
@@ -120,5 +116,11 @@ class Rocket32VCU108Config extends Config(
 class Sha3RocketVCU108Config extends Config(
   new WithVCU108Tweaks ++
   new sha3.WithSha3Accel ++
+  new freechips.rocketchip.subsystem.WithNBigCores(1) ++
+  new chipyard.config.AbstractConfig)
+
+class Sha2RocketVCU108Config extends Config(
+  new WithVCU108Tweaks ++
+  new sha2.WithSha2Accel ++
   new freechips.rocketchip.subsystem.WithNBigCores(1) ++
   new chipyard.config.AbstractConfig)
