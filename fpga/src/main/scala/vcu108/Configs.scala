@@ -66,12 +66,12 @@ class WithVCU108Tweaks extends Config(
   new WithUART ++
   new WithSPISDCard ++
   new WithDDRMem ++
-  new WithJTAG ++
+  // new WithJTAG ++ // enable JTAG interface
   // other configuration
   new WithDefaultPeripherals ++
   new chipyard.config.WithTLBackingMemory ++ // use TL backing memory
   new WithSystemModifications ++ // setup busses, use sdboot bootrom, setup ext. mem. size
-  // new chipyard.config.WithNoDebug ++ // remove debug module
+  new chipyard.config.WithNoDebug ++ // remove debug module
   new freechips.rocketchip.subsystem.WithoutTLMonitors ++
   new freechips.rocketchip.subsystem.WithNMemoryChannels(1)
 )
@@ -80,6 +80,13 @@ class RocketVCU108Config extends Config(
   new WithVCU108Tweaks ++
   new chipyard.RocketConfig)
 // DOC include end: AbstractVCU108 and Rocket
+
+
+class SmallRocketVCU108Config extends Config(
+  new WithVCU108Tweaks ++
+  new freechips.rocketchip.subsystem.WithNSmallCores(1) ++
+  new chipyard.config.AbstractConfig)
+
 
 class BoomVCU108Config extends Config(
   new WithFPGAFrequency(50) ++
